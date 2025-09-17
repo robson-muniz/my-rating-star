@@ -6,31 +6,22 @@ function Modal({ isOpen, onClose, rating }) {
         <AnimatePresence>
             {isOpen && (
                 <motion.div
-                    // overlay: ensures it captures pointer events, add backdrop-filter prefixed for better stability
                     className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 pointer-events-auto"
-                    style={{
-                        WebkitBackdropFilter: "blur(6px)", // better cross-browser support for the blur
-                        backdropFilter: "blur(6px)",
-                        willChange: "opacity, transform"
-                    }}
+                    style={{ WebkitBackdropFilter: "blur(6px)", backdropFilter: "blur(6px)", willChange: "opacity, transform" }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    // prevent clicks from falling through to elements underneath
-                    onMouseDown={(e) => {
-                        e.stopPropagation();
-                        e.preventDefault();
-                    }}
+                    onMouseDown={(e) => e.stopPropagation()}
                 >
                     <motion.div
                         className="bg-white rounded-2xl p-8 text-center max-w-sm mx-4 shadow-2xl pointer-events-auto"
-                        initial={{ opacity: 0, scale: 0.95 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.22 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                         role="dialog"
                         aria-modal="true"
-                        onMouseDown={(e) => e.stopPropagation()} // make sure clicks inside modal don't trigger overlay handlers
+                        onMouseDown={(e) => e.stopPropagation()}
                     >
                         <div className="mb-6">
                             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">

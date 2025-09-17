@@ -2,9 +2,12 @@ import { useState } from "react";
 import Star from "./Star.jsx";
 import Modal from "./Modal.jsx";
 import Button from "./Button.jsx";
-import confetti from 'canvas-confetti';
+import confetti from "canvas-confetti";
 
-const Rating = ({ heading = "Rate Your Experience", feedbackMessages = ['Terrible', 'Poor', 'Fair', 'Good', 'Excellent'] }) => {
+const Rating = ({
+                    heading = "Rate Your Experience",
+                    feedbackMessages = ['Terrible', 'Poor', 'Fair', 'Good', 'Excellent']
+                }) => {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
     const [submitted, setSubmitted] = useState(false);
@@ -14,7 +17,8 @@ const Rating = ({ heading = "Rate Your Experience", feedbackMessages = ['Terribl
     const handleSubmit = () => {
         if (rating > 0) {
             setSubmitted(true);
-            // fire a subtle confetti burst
+
+            // Confetti burst
             confetti({
                 particleCount: 50,
                 spread: 70,
@@ -43,9 +47,10 @@ const Rating = ({ heading = "Rate Your Experience", feedbackMessages = ['Terribl
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 flex items-center justify-center p-4">
-            {/* make the card inert while modal is open so underlying hover events don't fire */}
             <div
-                className={`bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md transform transition-all duration-300 ${submitted ? 'pointer-events-none select-none' : 'hover:scale-105'}`}
+                className={`bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md transform transition-all duration-300 ${
+                    submitted ? 'pointer-events-none select-none' : 'hover:scale-105'
+                }`}
                 aria-hidden={submitted}
             >
                 {/* Header */}
@@ -76,7 +81,7 @@ const Rating = ({ heading = "Rate Your Experience", feedbackMessages = ['Terribl
 
                 {/* Feedback Message */}
                 {rating > 0 && (
-                    <div className="text-center mb-6 animate-fade-in">
+                    <div className="text-center mb-6 animate-scale-in">
                         <p className={`text-xl font-semibold ${getFeedbackColor(rating)} transition-all duration-300`}>
                             {feedbackMessages[rating - 1]}
                         </p>
@@ -89,7 +94,7 @@ const Rating = ({ heading = "Rate Your Experience", feedbackMessages = ['Terribl
                         className={`px-8 py-3 rounded-full font-semibold text-lg transition-all duration-300 transform ${
                             rating === 0
                                 ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                                : 'bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white hover:scale-105 focus:ring-indigo-300 shadow-lg hover:shadow-xl'
+                                : 'bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white hover:scale-105 hover:-translate-y-1 focus:ring-indigo-300 shadow-lg hover:shadow-xl'
                         }`}
                         disabled={rating === 0}
                         onClick={handleSubmit}
