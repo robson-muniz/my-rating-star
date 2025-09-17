@@ -1,5 +1,5 @@
-import './index.css'
-import Rating from './Rating.jsx'
+import './index.css';
+import Rating from './Rating.jsx';
 
 function App() {
     const customFeedbackMessages = ['Terrible', 'Poor', 'Fair', 'Good', 'Excellent'];
@@ -11,7 +11,7 @@ function App() {
                 feedbackMessages={customFeedbackMessages}
             />
         </div>
-    )
+    );
 }
 
-export default App
+export default App;
