@@ -11,7 +11,6 @@ function Modal({ isOpen, onClose, rating }) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    onMouseDown={(e) => e.stopPropagation()}
                 >
                     <motion.div
                         className="bg-white rounded-2xl p-8 text-center max-w-sm mx-4 shadow-2xl pointer-events-auto"
@@ -19,9 +18,6 @@ function Modal({ isOpen, onClose, rating }) {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.8 }}
                         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                        role="dialog"
-                        aria-modal="true"
-                        onMouseDown={(e) => e.stopPropagation()}
                     >
                         <div className="mb-6">
                             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
