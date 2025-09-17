@@ -2,6 +2,7 @@ import { useState } from "react";
 import Star from "./Star.jsx";
 import Modal from "./Modal.jsx";
 import Button from "./Button.jsx";
+import confetti from 'canvas-confetti';
 
 const Rating = ({ heading = "Rate Your Experience", feedbackMessages = ['Terrible', 'Poor', 'Fair', 'Good', 'Excellent'] }) => {
     const [rating, setRating] = useState(0);
@@ -13,6 +14,13 @@ const Rating = ({ heading = "Rate Your Experience", feedbackMessages = ['Terribl
     const handleSubmit = () => {
         if (rating > 0) {
             setSubmitted(true);
+            // fire a subtle confetti burst
+            confetti({
+                particleCount: 50,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#6366F1', '#8B5CF6', '#EC4899', '#F472B6', '#FBBF24']
+            });
         }
     };
 
